@@ -1,4 +1,5 @@
 import os
+import argparse
 import hashlib
 import csv
 
@@ -38,10 +39,17 @@ def find_duplicate_images(root_dir, index_file, output_csv):
         for original, duplicate in duplicates:
             csv_writer.writerow([original, duplicate])
 
-if __name__ == "__main__":
-    big_directory = "/path/to/big/directory"
+def main():
+    parser = argparse.ArgumentParser(description="Find and report duplicate images.")
+    parser.add_argument("-d", "--directory", required=True, help="Path to the directory containing images")
+    args = parser.parse_args()
+
+    big_directory = args.directory
     index_file = "image_index.csv"
     output_csv = "duplicate_images.csv"
     
     find_duplicate_images(big_directory, index_file, output_csv)
+
+if __name__ == "__main__":
+    main()
 
