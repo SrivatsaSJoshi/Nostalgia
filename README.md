@@ -5,16 +5,16 @@ Simple Python Scripts for finding and deleting duplicate images that might be pr
 There are multiple copies of the same kind of files scattered across many directories inside a root directory. This might have happened because one might copy over their images from their phones and then forget that you already have and do it again in a different sub directory.
 
 # How to use
-Run find_duplicates.py and pass in the directory you want to scan recursively.
+Run `find_duplicates.py` and pass in the directory you want to scan recursively.
 ```
 python3 find_duplicates.py -d /path/to/directory
 ```
 
 This will generate 
-- image_index.csv containing the path and the hash of all files in the directory.
-- duplicate_images.csv containing the path to the two identical files it found.
+- `image_index.csv` containing the path and the hash of all files in the directory.
+- `duplicate_images.csv` containing the path to the two identical files it found.
 
-Now you can run delete_duplicates.py which will read the duplicate_images.csv and delete all the files specified in the second column.
+Now you can run `delete_duplicates.py` which will read the `duplicate_images.csv` and delete all the files specified in the second column.
 ```
 python3 delete_duplicates.py
 ```
