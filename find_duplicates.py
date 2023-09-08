@@ -23,15 +23,14 @@ def find_duplicate_images(root_dir, index_file, output_csv):
         for root, _, files in os.walk(root_dir):
             print(f"Processing directory: {root}")  # Debug statement
             for filename in files:
-                if filename.lower().endswith(('.jpg', '.jpeg', '.png', '.gif')):
-                    file_path = os.path.join(root, filename)
-                    file_hash = get_file_hash(file_path)
-                    index_writer.writerow([file_hash, file_path])
+                file_path = os.path.join(root, filename)
+                file_hash = get_file_hash(file_path)
+                index_writer.writerow([file_hash, file_path])
 
-                    if file_hash in image_hashes:
-                        duplicates.append((file_path, image_hashes[file_hash]))
-                    else:
-                        image_hashes[file_hash] = file_path
+                if file_hash in image_hashes:
+                    duplicates.append((file_path, image_hashes[file_hash]))
+                else:
+                    image_hashes[file_hash] = file_path
 
     with open(output_csv, 'w') as csv_file:
         csv_writer = csv.writer(csv_file)
